@@ -1,23 +1,39 @@
-a, b, c, d = map(int, input().split())
-mmc_embaixo = None
-if b % d == 0:
-    mmc_embaixo = b
-elif d % b == 0:
-    mmc_embaixo = d
-else:
-    mmc_embaixo = d*b
-mdc = 1
-dividendo = (a*(mmc_embaixo/b) + c*(mmc_embaixo/d))
-divisor = mmc_embaixo
-
-if dividendo % divisor == 0:
-    mdc = divisor
-elif divisor % dividendo == 0:
-    mdc = dividendo
-else:
+# soma de fracoes
+def mdc_f(a, b):
+    mdc = 1
     i = 2
-    while i < dividendo or i < divisor:
-        if dividendo % i == 0 and divisor % i == 0:
+    while i < a or i < b:
+        if a % i == 0 and b % i == 0:
             mdc = i
         i += 1
-print(f"{dividendo // mdc:.0f} {divisor // mdc}")
+    print(f"mdc: {mdc}")
+    return mdc
+
+
+def mmc_f(a, b):
+    mdc = mdc_f(a, b)
+    mmc = (a / mdc * b / mdc) * mdc
+    print(f"mmc: {mmc}")
+    return mmc
+
+
+def soma(a, b, c, d):
+    bottom = mmc_f(b, d)
+    upper = bottom / b * a + bottom / d * c
+    mdc = mdc_f(upper, bottom)
+
+    print(f"{upper / mdc:.0f} {bottom // mdc:.0f}")
+    return f"{upper / mdc:.0f} {bottom // mdc:.0f}"
+
+
+assert mdc_f(4, 6) == 2
+assert mdc_f(9, 36) == 9
+assert mdc_f(10, 7) == 1
+print("")
+assert mmc_f(4, 6) == 12
+assert mmc_f(9, 36) == 36
+assert mmc_f(10, 7) == 70
+print("")
+assert soma(2, 4, 5, 6) == "4 3"
+assert soma(2, 9, 5, 36) == "13 36"
+assert soma(3, 10, 5, 7) == "71 70"

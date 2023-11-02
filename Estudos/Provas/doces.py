@@ -1,3 +1,10 @@
+# dado um inteiro n q eh o numero de criancas
+# as proximas n entradas eh  numero de doces q aquela crianca tem
+# duas criancas sao chamadas. quem tem mais da pra quem tem menos
+# repita o processo ate todos tenham o msm numero de doces
+# quantas rodadas foram necessarias?
+# se for impossivel imprime -1
+
 n = int(input())
 while n != 0:
     entrada = list(map(int, input().split()))
