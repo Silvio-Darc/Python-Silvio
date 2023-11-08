@@ -1,3 +1,4 @@
+# Computers account for only 5% of the country's commercial electricity consumption.
 for _ in range(int(input())):
     palavra = input().lower()
     letras = []
