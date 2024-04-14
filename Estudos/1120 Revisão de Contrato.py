@@ -2,14 +2,18 @@ entrada = input()
 while entrada != "0 0":
     digFalho, valorCerto = map(str, entrada.split())
     valorFalho = ""
-    for dig in range(len(valorCerto) - 1):
-        if dig == 0 and valorCerto[dig] != digFalho:
+    for dig in range(len(valorCerto)):
+        if valorCerto[dig] != digFalho:
             valorFalho += valorCerto[dig]
-        elif valorCerto[dig] != digFalho and valorCerto[dig] != valorCerto[dig + 1]:
-            valorFalho += valorCerto[dig]
-    if valorCerto[len(valorCerto) - 1] != digFalho:
-        valorFalho += valorCerto[len(valorCerto) - 1]
-    if valorFalho == "":
+    if valorFalho == "" or valorFalho == "0" * len(valorFalho):
         valorFalho = "0"
-    print(valorFalho)
-    entrada = input()
+        print(valorFalho)
+        entrada = input()
+    else:
+        lista = []
+        for letra in valorFalho:
+            lista.append(letra)
+        while lista[0] == "0":
+            lista.remove("0")
+        print("".join(lista))
+        entrada = input()
